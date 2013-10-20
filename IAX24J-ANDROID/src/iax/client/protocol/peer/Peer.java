@@ -70,7 +70,7 @@ public class Peer {
     //Flag for determining if the peer is processing the exit
     private boolean processingExit;
     //Max calls
-//    private int maxCalls;
+    private int maxCalls;
 
     private AudioFactory audioFactory;
 
@@ -115,7 +115,7 @@ public class Peer {
         this.userName = userName;
         this.password = password;
         this.host = host;
-//        this.maxCalls = maxCalls;
+        this.maxCalls = maxCalls;
         if (audioFactory == null){
         	this.audioFactory = new NullAudioFactory();
         }else{
@@ -421,9 +421,9 @@ public class Peer {
      * @return The new call.
      * @throws PeerException
      */
-    //public synchronized Call newCall(String calledNumber) throws PeerException {
-      public Call newCall(String calledNumber) throws PeerException {
-        if (call == null && peerListener.isEnabled()) {
+    public synchronized Call newCall(String calledNumber) throws PeerException {
+    //  public Call newCall(String calledNumber) throws PeerException {
+        //if (call == null && peerListener.isEnabled()) {
             Call newCall = null;
             try {
                 newCall = new Call(this, newLocalSrcCallNo,audioFactory);
@@ -434,7 +434,7 @@ public class Peer {
             call = newCall;
             newLocalSrcCallNo++;
             return newCall;
-        } else throw new PeerException("Reached calls maximun");
+        //} else throw new PeerException("Reached calls maximun");
     }
 
 

@@ -13,17 +13,21 @@ import com.example.iax24j_android.iaxConnection;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class MainActivity extends Activity  implements PeerListener {
+	//, android.view.View.OnClickListener
     public static Peer mypeer;
-    
+    Button btnOk;
+    //
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		
-	       iaxConnection ic = new iaxConnection();
+ 	   iaxConnection ic = new iaxConnection();
 	       ic.connect();
 	       try {
 	           Thread.sleep(10000);
@@ -32,9 +36,24 @@ public class MainActivity extends Activity  implements PeerListener {
 	         }
 	       
 	       ic.call("999");
+		
+		btnOk = (Button) findViewById(R.id.button1);
+		//mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,1000);
+		 
+		OnClickListener oclBtnOk = new OnClickListener() {
+		       @Override
+		       public void onClick(View v) {
+ 	 
+		       }
+		     };
+		     
+		     btnOk.setOnClickListener(oclBtnOk);
+	       
+		
 
-	        //mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,10000);
-			//UserCommandFacade.newCall(mypeer, "999");
+
+	        
+		//	UserCommandFacade.newCall(mypeer, "999");
 	}
 
 	@Override
@@ -97,5 +116,26 @@ public class MainActivity extends Activity  implements PeerListener {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+/*	@Override
+	public void onClick(View v) {
+		  
+		 //int i = (int) Math.round(v.getId()/10000000);
+		int i =v.getId();
+		System.out.println(i);
+		 switch (i) {
+	     case 2131230721 :
+		       iaxConnection ic = new iaxConnection();
+		       ic.connect();
+		       try {
+		           Thread.sleep(10000);
+		         } catch (InterruptedException ie) {
+		           ie.printStackTrace();
+		         }
+		       
+		       ic.call("999");
+	       break;
+		 }
+	}*/
+	
 }

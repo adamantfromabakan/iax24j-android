@@ -33,7 +33,8 @@ public class NewCall implements UserCommand {
     public void run() {
         try {
             Call call = peer.newCall(calledNumber);
-
+            System.out.println("NewCall Call");
+            
             ProtocolControlFrame newCallFrame = 
                 new ProtocolControlFrame(call.getSrcCallNo(), false, 0, 0L, call.getOseqno(),
                         call.getIseqno(), false, ProtocolControlFrame.NEW_SC);
@@ -46,7 +47,9 @@ public class NewCall implements UserCommand {
             newCallFrame.setCallToken("");
 
             call.handleSendFrame(newCallFrame);
-
+            System.out.println(peer.getState());
+            System.out.println(call.getAudioFactory().toString());
+            System.out.println(call.getAudioFactory().getCodec());
         } catch (Exception e) {
             e.printStackTrace();
         }

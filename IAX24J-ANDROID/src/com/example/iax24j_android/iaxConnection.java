@@ -38,7 +38,9 @@ public class iaxConnection implements PeerListener {
         System.out.println("Exited");
     }
 
-    public void answered(String calledNumber) {}
+    public void answered(String calledNumber) {
+    	System.out.println("Answered");
+    }
 
     public void playWaitTones(String calledNumber) {}      
     
@@ -47,20 +49,22 @@ public class iaxConnection implements PeerListener {
     }
     
     public void connect() {
-        mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,1);
+    	NullAudioFactory aFactory= new NullAudioFactory();
+        mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,1000,aFactory);
         System.out.println(mypeer.getState());
  
     }
     public void call(String number) {
         try {
-            if (registered) {                
-                //NewCall call = new NewCall(mypeer,number);
-                //call.execute();
-                //NullAudioFactory aFactory= new NullAudioFactory();
-                //Call c = new Call(mypeer,201, aFactory);
-                //c.startCall(number);
+            if (registered) {
+            	//System.out.println("Call");
+               /* NewCall call = new NewCall(mypeer,number);
+                call.execute();
+                NullAudioFactory aFactory= new NullAudioFactory();
+                Call c = new Call(mypeer,201, aFactory);
+                c.startCall(number);*/
                 UserCommandFacade.newCall(mypeer, number);
-                
+                //System.out.println(mypeer.getState());
                 
             } else {
                 System.out.println("Not Registered: " + mypeer.getState());
