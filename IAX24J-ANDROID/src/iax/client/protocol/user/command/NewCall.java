@@ -33,7 +33,7 @@ public class NewCall implements UserCommand {
     public void run() {
         try {
             Call call = peer.newCall(calledNumber);
-            System.out.println("NewCall Call");
+            System.out.println("NewCall.run");
             
             ProtocolControlFrame newCallFrame = 
                 new ProtocolControlFrame(call.getSrcCallNo(), false, 0, 0L, call.getOseqno(),

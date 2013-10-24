@@ -46,29 +46,7 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 	       
 	       ic.call("999");
 		
-	        //mediaPlayer = MediaPlayer.create(this,android.R.raw);
-	       // mediaPlayer.start();
-	        mediaPlayer = new MediaPlayer();
-	        try {
-				mediaPlayer.setDataSource(DATA_STREAM);
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        
-	        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-	        //Log.d(LOG_TAG, "prepareAsync");
-	        mediaPlayer.setOnPreparedListener(this);
-	        mediaPlayer.prepareAsync();
+
 	        
 		btnOk = (Button) findViewById(R.id.button1);
 		//mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,1000);

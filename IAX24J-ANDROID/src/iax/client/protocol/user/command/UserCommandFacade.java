@@ -37,7 +37,7 @@ public class UserCommandFacade {
      * @param calledNumber Number to call to.
      */
     public static void newCall(Peer peer, String calledNumber) {
-    	System.out.println("Facade Call");
+    	System.out.println("UserCommandFacade.newCall");
         (new NewCall(peer, calledNumber)).execute();
     }
 
