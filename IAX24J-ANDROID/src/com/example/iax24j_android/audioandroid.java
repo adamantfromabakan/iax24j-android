@@ -39,11 +39,11 @@ public class audioandroid {
 		
 
 AudioManager aMan = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-/*aMan.setRouting(AudioManager.MODE_IN_CALL, 
+aMan.setRouting(AudioManager.MODE_IN_CALL, 
 AudioManager.ROUTE_EARPIECE, 
 AudioManager.ROUTE_ALL);
 aMan.setMode(AudioManager.MODE_IN_CALL);
-track.play();*/
+track.play();
 	}
 
 }

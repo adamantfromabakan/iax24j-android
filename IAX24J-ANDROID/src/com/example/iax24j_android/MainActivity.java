@@ -2,6 +2,7 @@ package com.example.iax24j_android;
 
 import java.io.IOException;
 
+
 import iax.client.audio.AudioFactory;
 import iax.client.audio.impl.NullAudioFactory;
 import iax.client.protocol.call.Call;
@@ -24,17 +25,17 @@ import android.widget.Button;
 
 public class MainActivity extends Activity  implements PeerListener,OnPreparedListener {
 	//, android.view.View.OnClickListener
+	private audioandroid audioInterface = new audioandroid();
     public static Peer mypeer;
     Button btnOk;
-    MediaPlayer mediaPlayer;
-    AudioManager am;
-    final String DATA_STREAM = "udp://90.189.119.84:14570";
+
+
     //
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		am = (AudioManager) getSystemService(AUDIO_SERVICE);
+
 		
  	   iaxConnection ic = new iaxConnection();
 	       ic.connect();
@@ -43,9 +44,9 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 	         } catch (InterruptedException ie) {
 	           ie.printStackTrace();
 	         }
-	       
+
 	       ic.call("999");
-		
+	       
 
 	        
 		btnOk = (Button) findViewById(R.id.button1);
