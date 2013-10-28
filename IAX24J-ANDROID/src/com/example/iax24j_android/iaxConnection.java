@@ -65,13 +65,14 @@ public class iaxConnection implements PeerListener,OnPreparedListener {
     	System.out.println("Answered from "+calledNumber);
 
     	
-    	  new Thread(new Runnable() {
+    	 /* new Thread(new Runnable() {
     		    public void run() {
     		    	aa = new audioandroid();
     		    	aa.listern(0);
     		    }
     		  }).start();
-    		
+    		*/
+    	
         //mediaPlayer = MediaPlayer.create(this,android.R.raw);
        // mediaPlayer.start();
        /* mediaPlayer = new MediaPlayer();

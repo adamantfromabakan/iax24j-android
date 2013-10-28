@@ -14,7 +14,7 @@ public class audioandroid {
     MediaPlayer mediaPlayer;
     AudioManager am;
 	private AudioTrack track = null;
-    final String DATA_STREAM = "udp://90.189.119.84:14570";
+    //final String DATA_STREAM = "udp://90.189.119.84:14570";
 	private static final int SAMPLE_RATE = 8000;
 	private static final int SAMPLES_PER_FRAME = 160;
 	private static final int FRAME_LEN = 20; /* ms */
