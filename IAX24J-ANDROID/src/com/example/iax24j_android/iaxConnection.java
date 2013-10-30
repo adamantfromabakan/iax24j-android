@@ -2,15 +2,19 @@ package com.example.iax24j_android;
 
 import java.io.IOException;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
+import android.os.IBinder;
 import android.util.Log;
 import iax.client.audio.AudioFactory;
 import iax.client.audio.impl.NullAudioFactory;
+import iax.client.audio.impl.ULAWAudioFactory;
 import iax.client.protocol.call.Call;
 import iax.client.protocol.peer.Peer;
 import iax.client.protocol.peer.PeerListener;
@@ -22,20 +26,10 @@ import iax.client.protocol.user.command.UserCommandFacade;
  *
  * @author john
  */
-public class iaxConnection implements PeerListener,OnPreparedListener {
+public class iaxConnection extends Service implements PeerListener,OnPreparedListener {
     public static Peer mypeer;
     public static boolean registered = false;
 	public audioandroid aa;
-/*    MediaPlayer mediaPlayer;
-    AudioManager am;
-    AudioTrack track;
-    final String DATA_STREAM = "udp://90.189.119.84:14570";
-	private static final int SAMPLE_RATE = 8000;
-	private static final int SAMPLES_PER_FRAME = 160;
-	private static final int FRAME_LEN = 20; /* ms */
-	//private Thread playThread = null;
-	//private Context context = null;
-	
 	
 	
     public void hungup(String calledNumber) {
@@ -182,7 +176,8 @@ this.playThread.start();*/
     }
     
     public void connect() {
-    	NullAudioFactory aFactory= new NullAudioFactory();
+    	//NullAudioFactory aFactory= new NullAudioFactory();
+    	ULAWAudioFactory aFactory= new ULAWAudioFactory();
         mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,1000,aFactory);
         System.out.println(mypeer.getState());
  
@@ -218,6 +213,26 @@ this.playThread.start();*/
 	public void onPrepared(MediaPlayer arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+
+	 	   iaxConnection ic = new iaxConnection();
+	       ic.connect();
+	       try {
+	           Thread.sleep(1000);
+	         } catch (InterruptedException ie) {
+	           ie.printStackTrace();
+	         }
+	       ic.call("999");
+		Log.d("iaxConnection", "onBind()");
+		return null;
+	}
+	
+	@Override
+	public void onCreate() {
+
 	}
 
 }

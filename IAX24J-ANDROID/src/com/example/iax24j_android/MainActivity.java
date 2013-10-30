@@ -1,8 +1,6 @@
 package com.example.iax24j_android;
 
 import java.io.IOException;
-
-
 import iax.client.audio.AudioFactory;
 import iax.client.audio.impl.NullAudioFactory;
 import iax.client.protocol.call.Call;
@@ -17,7 +15,12 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +31,11 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 	private audioandroid audioInterface = new audioandroid();
     public static Peer mypeer;
     Button btnOk;
+    boolean bound = false;
+    ServiceConnection sConn;
+    Intent intent;
+    private iaxConnection serviceConnection = null;
+    final String LOG_TAG = "myLogs";
 
 
     //
@@ -35,22 +43,36 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+  
+		intent = new Intent(this,iaxConnection.class);
+	    sConn = new ServiceConnection() {
+			      public void onServiceConnected(ComponentName name, IBinder binder) {
+			        Log.d(LOG_TAG, "MainActivity onServiceConnected");
+			        bound = true;
+			      }
 
+			      public void onServiceDisconnected(ComponentName name) {
+			        Log.d(LOG_TAG, "MainActivity onServiceDisconnected");
+			        bound = false;
+			      }
+			    };
+			    //startService(intent);
+			    bindService(intent, sConn, BIND_AUTO_CREATE);
+			    
 		
- 	   iaxConnection ic = new iaxConnection();
+ 	/*   iaxConnection ic = new iaxConnection();
 	       ic.connect();
 	       try {
-	           Thread.sleep(10000);
+	           Thread.sleep(1000);
 	         } catch (InterruptedException ie) {
 	           ie.printStackTrace();
 	         }
 
-	       ic.call("999");
+	       ic.call("999");*/
 	       
 
 	        
 		btnOk = (Button) findViewById(R.id.button1);
-		//mypeer = new Peer(this,"201","q1kdid93","90.189.119.84",14570, true,1000);
 		 
 		OnClickListener oclBtnOk = new OnClickListener() {
 		       @Override
@@ -134,6 +156,9 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
 	
 /*	@Override
 	public void onClick(View v) {
