@@ -37,6 +37,7 @@ public class iaxConnection extends Service implements PeerListener,OnPreparedLis
     }
 
     public void recvCall(String callingName, String callingNumber) {
+    	UserCommandFacade.answerCall(mypeer, callingNumber);
         System.out.println("New Call From: " + callingNumber);
     }
 
@@ -192,6 +193,7 @@ this.playThread.start();*/
                 Call c = new Call(mypeer,201, aFactory);
                 c.startCall(number);*/
                 UserCommandFacade.newCall(mypeer, number);
+                
                 //System.out.println(mypeer.getState());
                 
             } else {

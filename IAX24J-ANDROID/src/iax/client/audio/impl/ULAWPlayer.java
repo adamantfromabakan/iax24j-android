@@ -38,9 +38,9 @@ public class ULAWPlayer extends Player{
 	}
 
 	private void openSourceDataLine() {
-		Log.d("IAX2Audio", "openSourceDataLine()");
+		Log.d("ULAWPlayer", "openSourceDataLine()");
 		// TODO Auto-generated method stub
-		Log.d("IAX2Audio", "startPlay()");
+		Log.d("ULAWPlayer", "startPlay()");
 		final int minPlayBuffer = AudioTrack.getMinBufferSize(
 				SAMPLE_RATE,
 				AudioFormat.CHANNEL_CONFIGURATION_MONO,
@@ -54,18 +54,16 @@ public class ULAWPlayer extends Player{
 				(640 > minPlayBuffer) ? 640 : minPlayBuffer,
 				AudioTrack.MODE_STREAM);
 			} catch (final IllegalArgumentException e) {
-				Log.e("IAX2Audio", "Failed to create AudioTrack");
+				Log.e("ULAWPlayer", "Failed to create AudioTrack");
 					e.printStackTrace();
 						return;
 			}
 
-		Log.d("IAX2Audio", "AudioManager before");
-		AudioManager aMan = (AudioManager) this.context.getSystemService(Context.AUDIO_SERVICE);
-		Log.d("IAX2Audio", "AudioManager after");
-		aMan.setRouting(AudioManager.MODE_IN_CALL, 
-				AudioManager.ROUTE_EARPIECE, 
-				AudioManager.ROUTE_ALL);
-		aMan.setMode(AudioManager.MODE_IN_CALL);
+		Log.d("ULAWPlayer", "AudioManager before");
+		//AudioManager aMan = (AudioManager) this.context.getSystemService(Context.AUDIO_SERVICE);
+		Log.d("ULAWPlayer", "AudioManager after");
+		//aMan.setRouting(AudioManager.MODE_IN_CALL,AudioManager.ROUTE_EARPIECE,AudioManager.ROUTE_ALL);
+		//aMan.setMode(AudioManager.MODE_IN_CALL);
 
 		final Runnable tplay = new Runnable() {
 			public void run() {
@@ -76,7 +74,7 @@ public class ULAWPlayer extends Player{
 		this.playThread = new Thread(tplay, "play_thread");
 		this.playThread.start();
 		//System.out.println("track.play");
-		Log.d("IAX2Audio", "play_thread");
+		Log.d("ULAWPlayer", "play_thread");
 	}
 
 	public void play() {
@@ -85,7 +83,7 @@ public class ULAWPlayer extends Player{
 	}
 
 	public void stop() {
-		Log.d("IAX2Audio", "stopPlay()");
+		Log.d("ULAWPlayer", "stopPlay()");
 
 		if (this.track != null) {
 			this.track.stop();
@@ -109,7 +107,7 @@ public class ULAWPlayer extends Player{
 	}
 
 	public void write(long timestamp, byte[] audioData, boolean absolute) {
-		Log.d("IAX2Audio", "write()");
+		Log.d("ULAWPlayer", "write()");
 		short[] qBuf = null;
 		
 		/* Try to used a cached buffer if we can */
@@ -123,7 +121,7 @@ public class ULAWPlayer extends Player{
 		
 		if (qBuf == null) {
 			/* Did not find a suitable cached buffer */
-			Log.d("IAX2Audio", "unused buffer cache miss");
+			Log.d("ULAWPlayer", "unused buffer cache miss");
 			qBuf = new short[audioData.length];
 		}
 		
@@ -163,7 +161,7 @@ public class ULAWPlayer extends Player{
 	
 	private void writeBuff(short[] buf) {
 		if (this.track == null) {
-			Log.w("IAX2Audio", "write() without an AudioTrack");
+			Log.w("ULAWPlayer", "write() without an AudioTrack");
 			return;
 		}
 
@@ -174,10 +172,10 @@ public class ULAWPlayer extends Player{
 			res = this.track.write(buf, written, buf.length - written);
 			switch (res) {
 			case AudioTrack.ERROR_INVALID_OPERATION:
-				Log.e("IAX2Audio", "Invalid write()");
+				Log.e("ULAWPlayer", "Invalid write()");
 				return;
 			case AudioTrack.ERROR_BAD_VALUE:
-				Log.e("IAX2Audio", "Bad arguments to write()");
+				Log.e("ULAWPlayer", "Bad arguments to write()");
 				return;
 			}
 

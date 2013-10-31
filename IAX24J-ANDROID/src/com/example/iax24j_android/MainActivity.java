@@ -1,6 +1,12 @@
 package com.example.iax24j_android;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import iax.client.audio.AudioFactory;
 import iax.client.audio.impl.NullAudioFactory;
 import iax.client.protocol.call.Call;
@@ -11,13 +17,14 @@ import iax.client.protocol.user.command.UserCommandFacade;
 
 import com.example.iax24j_android.iaxConnection;
 
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnPreparedListener;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.util.Log;
@@ -25,17 +32,18 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TableLayout;
 
-public class MainActivity extends Activity  implements PeerListener,OnPreparedListener {
-	//, android.view.View.OnClickListener
-	private audioandroid audioInterface = new audioandroid();
+public class MainActivity extends Activity  implements PeerListener {
     public static Peer mypeer;
     Button btnOk;
+    Button btnAns;
     boolean bound = false;
     ServiceConnection sConn;
     Intent intent;
     private iaxConnection serviceConnection = null;
-    final String LOG_TAG = "myLogs";
+    final String LOG_TAG = "MAINACTIVITY";
+    iaxConnection ic;
 
 
     //
@@ -44,7 +52,7 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
   
-		intent = new Intent(this,iaxConnection.class);
+		/*intent = new Intent(this,iaxConnection.class);
 	    sConn = new ServiceConnection() {
 			      public void onServiceConnected(ComponentName name, IBinder binder) {
 			        Log.d(LOG_TAG, "MainActivity onServiceConnected");
@@ -57,10 +65,10 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 			      }
 			    };
 			    //startService(intent);
-			    bindService(intent, sConn, BIND_AUTO_CREATE);
+			    bindService(intent, sConn, BIND_AUTO_CREATE);*/
 			    
 		
- 	/*   iaxConnection ic = new iaxConnection();
+ 	       ic = new iaxConnection();
 	       ic.connect();
 	       try {
 	           Thread.sleep(1000);
@@ -68,7 +76,7 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 	           ie.printStackTrace();
 	         }
 
-	       ic.call("999");*/
+
 	       
 
 	        
@@ -77,17 +85,28 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 		OnClickListener oclBtnOk = new OnClickListener() {
 		       @Override
 		       public void onClick(View v) {
- 	 
+		   		
+			       ic.call("999");
+			       //ic.hungup("999");
+			       //ic.waiting();
+
 		       }
 		     };
 		     
 		     btnOk.setOnClickListener(oclBtnOk);
-	       
-		
-
-
-	        
-		//	UserCommandFacade.newCall(mypeer, "999");
+	  
+		btnAns = (Button) findViewById(R.id.button2);
+				 
+		OnClickListener oclBtnAns = new OnClickListener() {
+				       @Override
+				       public void onClick(View v) {
+				   		
+				    	   //ic.recvCall("202", "202");
+				    	   ic.call("202");
+				       }
+				     };
+				     
+				     btnAns.setOnClickListener(oclBtnAns);		     
 	}
 
 	@Override
@@ -151,34 +170,9 @@ public class MainActivity extends Activity  implements PeerListener,OnPreparedLi
 		return false;
 	}
 
-	@Override
-	public void onPrepared(MediaPlayer arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 
 	
-/*	@Override
-	public void onClick(View v) {
-		  
-		 //int i = (int) Math.round(v.getId()/10000000);
-		int i =v.getId();
-		System.out.println(i);
-		 switch (i) {
-	     case 2131230721 :
-		       iaxConnection ic = new iaxConnection();
-		       ic.connect();
-		       try {
-		           Thread.sleep(10000);
-		         } catch (InterruptedException ie) {
-		           ie.printStackTrace();
-		         }
-		       
-		       ic.call("999");
-	       break;
-		 }
-	}*/
+	 
 	
 }
