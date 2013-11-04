@@ -10,6 +10,24 @@ package com.example.iax24j_android;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        /**  orange 
+ DTMF Dialer 
+         */
+        public static final int dtmf_dialer_background=0x7f040003;
+        /**  In-call UI 
+ <color name="incall_textConnected">#99CE3F</color>  green 
+         */
+        public static final int incall_textConnected=0x7f040000;
+        public static final int incall_textEnded=0x7f040001;
+        /**  red 
+         */
+        public static final int incall_textOnHold=0x7f040002;
+        /**  green 
+         */
+        public static final int recording_time_elapsed_text=0x7f040004;
+        public static final int recording_time_remaining_text=0x7f040005;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -17,28 +35,146 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int btn_dial=0x7f020000;
+        public static final int btn_dial_delete=0x7f020001;
+        public static final int btn_dial_delete_activated=0x7f020002;
+        public static final int btn_dial_delete_active=0x7f020003;
+        public static final int btn_dial_delete_normal=0x7f020004;
+        public static final int btn_dial_delete_pressed=0x7f020005;
+        public static final int btn_dial_delete_selected=0x7f020006;
+        public static final int btn_dial_normal=0x7f020007;
+        public static final int btn_dial_pressed=0x7f020008;
+        public static final int btn_dial_selected=0x7f020009;
+        public static final int btn_dial_textfield=0x7f02000a;
+        public static final int btn_dial_textfield_activated=0x7f02000b;
+        public static final int btn_dial_textfield_activated_full=0x7f02000c;
+        public static final int btn_dial_textfield_active=0x7f02000d;
+        public static final int btn_dial_textfield_normal=0x7f02000e;
+        public static final int btn_dial_textfield_normal_full=0x7f02000f;
+        public static final int btn_dial_textfield_pressed=0x7f020010;
+        public static final int btn_dial_textfield_pressed_full=0x7f020011;
+        public static final int btn_dial_textfield_selected=0x7f020012;
+        public static final int btn_dial_textfield_selected_full=0x7f020013;
+        public static final int btn_dialer=0x7f020014;
+        public static final int btn_dialer_default=0x7f020015;
+        public static final int btn_dialer_default_dial=0x7f020016;
+        public static final int btn_dialer_dial=0x7f020017;
+        public static final int btn_dialer_pressed=0x7f020018;
+        public static final int btn_dialer_selected=0x7f020019;
+        public static final int dark_header=0x7f02001a;
+        public static final int dark_header_dithered=0x7f02001b;
+        public static final int dial_num_0=0x7f02001c;
+        public static final int dial_num_0_blk=0x7f02001d;
+        public static final int dial_num_0_wht=0x7f02001e;
+        public static final int dial_num_1=0x7f02001f;
+        public static final int dial_num_1_blk=0x7f020020;
+        public static final int dial_num_1_no_vm=0x7f020021;
+        public static final int dial_num_1_no_vm_blk=0x7f020022;
+        public static final int dial_num_1_no_vm_wht=0x7f020023;
+        public static final int dial_num_1_wht=0x7f020024;
+        public static final int dial_num_2=0x7f020025;
+        public static final int dial_num_2_blk=0x7f020026;
+        public static final int dial_num_2_wht=0x7f020027;
+        public static final int dial_num_3=0x7f020028;
+        public static final int dial_num_3_blk=0x7f020029;
+        public static final int dial_num_3_wht=0x7f02002a;
+        public static final int dial_num_4=0x7f02002b;
+        public static final int dial_num_4_blk=0x7f02002c;
+        public static final int dial_num_4_wht=0x7f02002d;
+        public static final int dial_num_5=0x7f02002e;
+        public static final int dial_num_5_blk=0x7f02002f;
+        public static final int dial_num_5_wht=0x7f020030;
+        public static final int dial_num_6=0x7f020031;
+        public static final int dial_num_6_blk=0x7f020032;
+        public static final int dial_num_6_wht=0x7f020033;
+        public static final int dial_num_7=0x7f020034;
+        public static final int dial_num_7_blk=0x7f020035;
+        public static final int dial_num_7_wht=0x7f020036;
+        public static final int dial_num_8=0x7f020037;
+        public static final int dial_num_8_blk=0x7f020038;
+        public static final int dial_num_8_wht=0x7f020039;
+        public static final int dial_num_9=0x7f02003a;
+        public static final int dial_num_9_blk=0x7f02003b;
+        public static final int dial_num_9_wht=0x7f02003c;
+        public static final int dial_num_pound=0x7f02003d;
+        public static final int dial_num_pound_blk=0x7f02003e;
+        public static final int dial_num_pound_wht=0x7f02003f;
+        public static final int dial_num_star=0x7f020040;
+        public static final int dial_num_star_blk=0x7f020041;
+        public static final int dial_num_star_wht=0x7f020042;
+        public static final int ic_delete_phone_number=0x7f020043;
+        public static final int ic_delete_phone_number_blk=0x7f020044;
+        public static final int ic_delete_phone_number_wht=0x7f020045;
+        public static final int ic_dial_number=0x7f020046;
+        public static final int ic_dial_number_blk=0x7f020047;
+        public static final int ic_dial_number_wht=0x7f020048;
+        public static final int ic_dialer_voicemail=0x7f020049;
+        public static final int ic_dialer_voicemail_black=0x7f02004a;
+        public static final int ic_dialer_voicemail_white=0x7f02004b;
+        public static final int ic_dialpad_tray=0x7f02004c;
+        public static final int ic_headphone=0x7f02004d;
+        public static final int ic_headphone_deactive=0x7f02004e;
+        public static final int ic_launcher=0x7f02004f;
+        public static final int ic_launcher_contacts=0x7f020050;
+        public static final int ic_menu_contact=0x7f020051;
+        public static final int ic_tab_contacts=0x7f020052;
+        public static final int ic_tab_dialer=0x7f020053;
+        public static final int ic_tab_recent=0x7f020054;
+        public static final int ic_tab_selected_contacts=0x7f020055;
+        public static final int ic_tab_selected_dialer=0x7f020056;
+        public static final int ic_tab_selected_recent=0x7f020057;
+        public static final int ic_tab_selected_stared=0x7f020058;
+        public static final int ic_tab_starred=0x7f020059;
+        public static final int ic_tab_unselected_contacts=0x7f02005a;
+        public static final int ic_tab_unselected_dialer=0x7f02005b;
+        public static final int ic_tab_unselected_recent=0x7f02005c;
+        public static final int ic_tab_unselected_stared=0x7f02005d;
+        public static final int tray_handle=0x7f02005e;
+        public static final int tray_handle_normal=0x7f02005f;
+        public static final int tray_handle_pressed=0x7f020060;
+        public static final int tray_handle_selected=0x7f020061;
     }
     public static final class id {
-        public static final int action_settings=0x7f080003;
-        public static final int button1=0x7f080001;
-        public static final int button2=0x7f080002;
-        public static final int textView1=0x7f080000;
+        public static final int action_settings=0x7f090015;
+        public static final int button1=0x7f090001;
+        public static final int button2=0x7f090002;
+        public static final int dialpad=0x7f090005;
+        public static final int digits=0x7f090004;
+        public static final int eight=0x7f09000d;
+        public static final int five=0x7f09000a;
+        public static final int four=0x7f090009;
+        public static final int nine=0x7f09000e;
+        public static final int one=0x7f090006;
+        public static final int phone=0x7f090013;
+        public static final int phonecont=0x7f090014;
+        public static final int phonedel=0x7f090012;
+        public static final int pound=0x7f090011;
+        public static final int seven=0x7f09000c;
+        public static final int six=0x7f09000b;
+        public static final int star=0x7f09000f;
+        public static final int textView1=0x7f090000;
+        public static final int three=0x7f090008;
+        public static final int top=0x7f090003;
+        public static final int two=0x7f090007;
+        public static final int zero=0x7f090010;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int dialpad=0x7f030001;
+        public static final int dialpad_dtmfdisplay=0x7f030002;
+        public static final int dialpad_keys=0x7f030003;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int hello_world=0x7f050002;
+        public static final int action_settings=0x7f060001;
+        public static final int app_name=0x7f060000;
+        public static final int hello_world=0x7f060002;
     }
     public static final class style {
         /** 
@@ -62,10 +198,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }
