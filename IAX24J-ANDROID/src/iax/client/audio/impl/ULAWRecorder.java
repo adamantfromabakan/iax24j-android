@@ -25,6 +25,7 @@ public class ULAWRecorder extends Recorder{
 	AudioTrack track;
 	Context context;
 	AudioRecord record;
+	AudioListener al;
 	private static final int SAMPLE_RATE = 8000;
 	private static final int SAMPLES_PER_FRAME = 160;
 	private static final int FRAME_LEN = 20; /* ms */
@@ -41,12 +42,12 @@ public class ULAWRecorder extends Recorder{
 				SAMPLE_RATE,
 				AudioFormat.CHANNEL_CONFIGURATION_MONO,
 				AudioFormat.ENCODING_PCM_16BIT);
-		recordSourceDataLine();
+		openTargetDataLine();
 		
 	}
 	
-	private void recordSourceDataLine() {
-		Log.d("ULAWRecorder", "recordSourceDataLine()");
+	private void openTargetDataLine() {
+		Log.d("ULAWRecorder", "openTargetDataLine()");
 		try {
 			Log.d("ULAWRecorder", "AudioRecord before");
 			this.record = new AudioRecord(MediaRecorder.AudioSource.MIC,SAMPLE_RATE,
@@ -59,17 +60,9 @@ public class ULAWRecorder extends Recorder{
 					e.getMessage());
 		}
 		
-		final Runnable trec = new Runnable() {
-			public void run() {
-				recTick();
-			}
-		};
-
-		this.recThread = new Thread(trec, "rec_thread");
-		this.recThread.start();
-		
-		
 	}
+	
+	
 	public void stop(){
 		if (this.record != null) {
 			this.record.stop();
@@ -97,6 +90,15 @@ public class ULAWRecorder extends Recorder{
 	}
 
 	public void record(AudioListener al) {
+		this.al = al;
+		final Runnable trec = new Runnable() {
+			public void run() {
+				recTick();
+			}
+		};
+
+		this.recThread = new Thread(trec, "rec_thread");
+		this.recThread.start();
 	}
 	
 	private void recTick() {
