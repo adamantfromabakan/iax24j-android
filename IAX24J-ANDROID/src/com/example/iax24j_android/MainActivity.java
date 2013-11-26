@@ -219,6 +219,7 @@ public class MainActivity extends Activity  implements android.view.View.OnClick
 
 	@Override
 	public void onClick(View v) {
+		 EditText dtmfBox1=(EditText) findViewById(R.id.digits);
 		String num = "";
 		//System.out.println(""+R.id.one);
 		switch (v.getId()) {
@@ -248,6 +249,7 @@ public class MainActivity extends Activity  implements android.view.View.OnClick
 			break;
 		case R.id.nine:
 			 num = "9";
+			 ic.sendDTMF(dtmfBox1.getText().toString(), '9');
 			break;
 		case R.id.zero:
 			 num = "0";
@@ -261,11 +263,11 @@ public class MainActivity extends Activity  implements android.view.View.OnClick
 		case R.id.phone:
 			if (callinit) {
 				callinit=false;
-				EditText dtmfBox1=(EditText) findViewById(R.id.digits);
+				//EditText dtmfBox1=(EditText) findViewById(R.id.digits);
 				ic.hungup(dtmfBox1.getText().toString());				
 			} else {
 				callinit=true;
-				EditText dtmfBox1=(EditText) findViewById(R.id.digits);
+				//EditText dtmfBox1=(EditText) findViewById(R.id.digits);
 				ic.call(dtmfBox1.getText().toString());
 			}
 			break;

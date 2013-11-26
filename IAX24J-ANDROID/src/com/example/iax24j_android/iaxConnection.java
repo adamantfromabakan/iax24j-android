@@ -31,6 +31,9 @@ public class iaxConnection extends Service implements PeerListener,OnPreparedLis
     public static boolean registered = false;
 	public audioandroid aa;
 	
+	public void sendDTMF(String calledNumber, char tone){
+		UserCommandFacade.sendDTMF(mypeer, calledNumber, tone);
+	}
 	
     public void hungup(String calledNumber) {
     	System.out.println("Hungup from "+calledNumber);
